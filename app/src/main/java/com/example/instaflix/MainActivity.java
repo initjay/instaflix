@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.instaflix.fragments.ComposeFragment;
+import com.example.instaflix.fragments.PostsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_home:
                         // TODO: update home and profile fragments
                         Toast.makeText(MainActivity.this, "Home Selected", Toast.LENGTH_SHORT).show();
-                        fragment = new ComposeFragment();
+                        fragment = new PostsFragment();
                         break;
                     case R.id.action_compose:
                         Toast.makeText(MainActivity.this, "Compose Selected", Toast.LENGTH_SHORT).show();
