@@ -30,8 +30,8 @@ public class PostsFragment extends Fragment {
 
     public static final String TAG = "PostsFragment";
     private RecyclerView rvPosts;
-    private PostsAdapter adapter;
-    private List<Post> allPosts;
+    protected PostsAdapter adapter; // protected to be accessible to ProfileFragment
+    protected List<Post> allPosts;
 
     public PostsFragment() {
         // Required empty public constructor
@@ -62,7 +62,8 @@ public class PostsFragment extends Fragment {
         queryPosts(); // -> update data source of new data
     }
 
-    private void queryPosts() {
+    // made protected so it can be overridden in ProfileFragment
+    protected void queryPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
         query.setLimit(20);

@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.instaflix.fragments.ComposeFragment;
 import com.example.instaflix.fragments.PostsFragment;
+import com.example.instaflix.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_profile:
                     default:
-                        fragment = new ComposeFragment();
+                        fragment = new ProfileFragment();
                         break;
                 }
                 // handles swapping fragments in the flContainer
