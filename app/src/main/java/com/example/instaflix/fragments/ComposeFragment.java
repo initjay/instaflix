@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -182,6 +183,10 @@ public class ComposeFragment extends Fragment {
                 Log.i(TAG, "Post save was successful!!");
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
+
+                FragmentManager fragmentManager = getFragmentManager();
+                Fragment fragment = new PostsFragment();
+                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
             }
         });
     }
