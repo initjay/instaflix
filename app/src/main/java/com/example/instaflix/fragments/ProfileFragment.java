@@ -14,13 +14,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.instaflix.LoginActivity;
 import com.example.instaflix.Post;
 import com.example.instaflix.PostsAdapter;
+import com.example.instaflix.ProfilePostsAdapter;
 import com.example.instaflix.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -34,11 +35,11 @@ public class ProfileFragment extends Fragment {
 
     public static final String TAG = "ProfileFragment";
     private RecyclerView rvPosts;
-    private PostsAdapter adapter;
+    private ProfilePostsAdapter adapter;
     private List<Post> allPosts;
     private TextView tvUserName;
     private ParseUser currUser;
-    private ImageView ivProfileimg;
+    private ImageView ivProfileImg;
 
     public ProfileFragment() {} // required empty public constructor
 
@@ -57,8 +58,6 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        //((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        //setHasOptionsMenu(true);
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -76,19 +75,18 @@ public class ProfileFragment extends Fragment {
 
         rvPosts = view.findViewById(R.id.rvProfile);
         tvUserName = view.findViewById(R.id.tvUserName);
-        ivProfileimg = view.findViewById(R.id.ivProfileImg);
+        ivProfileImg = view.findViewById(R.id.ivProfileImg);
 
         tvUserName.setText(currUser.getUsername());
 
-        // TODO Get profile picture
-        // User not considered parse object so cannot call getParseFile???
+        // get profile picture
         if (currUser.getParseFile("profileimg") != null) {
             Log.i(TAG, "Profile picture " + currUser.getParseFile("profileimg").toString());
-            Glide.with(this).load(currUser.getParseFile("profileimg").getUrl()).centerCrop().into(ivProfileimg);
+            Glide.with(this).load(currUser.getParseFile("profileimg").getUrl()).circleCrop().into(ivProfileImg);
         }
 
         allPosts = new ArrayList<>(); // allPosts is the data source
-        adapter = new PostsAdapter(getContext(), allPosts);
+        adapter = new ProfilePostsAdapter(getContext(), allPosts);
         // Steps to use the recycler view:
         // 0. create layout for one row in the list -> item_post.xml
         // 1. create the adapter -> PostsAdapter.java
@@ -96,7 +94,7 @@ public class ProfileFragment extends Fragment {
         // 3. set the adapter on the recycler view
         rvPosts.setAdapter(adapter);
         // 4. set the layout manager on the recycler view
-        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvPosts.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         queryPosts(); // -> update data source of new data
     }
 

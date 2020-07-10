@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.Image;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +18,9 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 public class PostDetailsActivity extends AppCompatActivity {
 
     public static final String TAG = "PostDetailsActivity";
@@ -25,6 +29,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     TextView tvCaption;
     ImageView ivProfileImg;
     ImageView ivPostImg;
+    TextView tvTimeStamp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         tvCaption = findViewById(R.id.tvCaption);
         ivProfileImg = findViewById(R.id.ivProfileImg);
         ivPostImg = findViewById(R.id.ivPostImg);
+        tvTimeStamp = findViewById(R.id.tvTimeStamp);
 
         final String postId = getIntent().getStringExtra("post_id");
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
@@ -50,16 +56,36 @@ public class PostDetailsActivity extends AppCompatActivity {
 
                     if (post.getUser().getParseFile("profileimg") != null) {
                         Log.i(TAG, "Profile picture " + post.getUser().getParseFile("profileimg").toString());
-                        Glide.with(getApplicationContext()).load(post.getUser().getParseFile("profileimg").getUrl()).centerCrop().into(ivProfileImg);
+                        Glide.with(getApplicationContext()).load(post.getUser().getParseFile("profileimg").getUrl()).circleCrop().into(ivProfileImg);
                     }
 
                     Glide.with(getApplicationContext()).load(post.getImage().getUrl()).into(ivPostImg);
 
                     tvUserName.setText(post.getUser().getUsername());
 
-
+                    tvTimeStamp.setText(getRelativeTimeAgo(post.getCreatedAt().toString()));
                 }
             }
         });
+
+
+    }
+
+    // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
+    public String getRelativeTimeAgo(String rawJsonDate) {
+        String dateFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
+        SimpleDateFormat sf = new SimpleDateFormat(dateFormat, Locale.ENGLISH);
+        sf.setLenient(true);
+
+        String relativeDate = "";
+        try {
+            long dateMillis = sf.parse(rawJsonDate).getTime();
+            relativeDate = DateUtils.getRelativeTimeSpanString(dateMillis,
+                    System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+
+        return relativeDate;
     }
 }
