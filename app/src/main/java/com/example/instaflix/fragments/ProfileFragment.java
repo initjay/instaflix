@@ -85,8 +85,11 @@ public class ProfileFragment extends Fragment {
         tvUserName.setText(currUser.getUsername());
 
         // TODO Get profile picture
-        //  User not considered parse object so cannot call getParseFile???
-        //Glide.with(this).load(currUser.getParseFile("profileimg")).circleCrop().into(ivProfileimg);
+        // User not considered parse object so cannot call getParseFile???
+        if (currUser.getParseFile("profileimg") != null) {
+            Log.i(TAG, "Profile picture " + currUser.getParseFile("profileimg").toString());
+            Glide.with(this).load(currUser.getParseFile("profileimg").getUrl()).centerCrop().into(ivProfileimg);
+        }
 
         allPosts = new ArrayList<>(); // allPosts is the data source
         adapter = new PostsAdapter(getContext(), allPosts);
