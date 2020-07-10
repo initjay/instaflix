@@ -1,6 +1,7 @@
 package com.example.instaflix;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    // Must add 'implements View.OnCLickListener' to enable onClick function
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView tvUserName;
         private ImageView ivImage;
@@ -65,6 +67,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvUserName = itemView.findViewById(R.id.tvUsername);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
+
+            // Make post clickable to go to post details activity
+            itemView.setOnClickListener(this);
         }
 
         public void post(Post post) {
@@ -75,6 +80,24 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
             if (image != null) { // only load image into imageview if valid image file is present
                 Glide.with(context).load(post.getImage().getUrl()).into(ivImage); // how to load image into imageview
+            }
+        }
+
+
+        @Override
+        public void onClick(View view) {
+            // get item position
+            int position = getAdapterPosition();
+            // make sure the position is valid - exists in the view
+            if (position != RecyclerView.NO_POSITION) {
+                // get the movie at the position
+                Post post = posts.get(position);
+                // create intent for the new activity
+                Intent intent = new Intent(context, PostDetailsActivity.class);
+                // pass post ParseObject to other activity
+                intent.putExtra("post_id", post.getObjectId());
+                // show the activity
+                context.startActivity(intent);
             }
         }
     }

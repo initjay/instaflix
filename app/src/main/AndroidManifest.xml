@@ -13,8 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CreateUserActivity"></activity>
-        <!-- 'usesCleartextTraffic allows http traffic to be sent, TODO MAKE MORE SECURE -->
+        <activity android:name=".PostDetailsActivity"></activity>
+        <activity android:name=".CreateUserActivity" /> <!-- 'usesCleartextTraffic allows http traffic to be sent, TODO MAKE MORE SECURE -->
         <!-- make sure within the application tag, otherwise app will crash with XmlResourceParser errors -->
         <provider
             android:name="androidx.core.content.FileProvider"
