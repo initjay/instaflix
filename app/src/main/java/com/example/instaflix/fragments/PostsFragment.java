@@ -106,7 +106,7 @@ public class PostsFragment extends Fragment {
     protected ParseQuery<Post> buildQuery(int skip) {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
-        query.setLimit(5);
+        query.setLimit(20);
         query.setSkip(skip);
         query.addDescendingOrder(Post.KEY_CREATED_AT);
         return query;

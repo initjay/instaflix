@@ -1,54 +1,57 @@
-# Project 4 - *Name of App Here*
+# Project 4 - *instaflix*
 
-**Name of your app** is a photo sharing app using Parse as its backend.
+**instaflix** is a photo sharing app using Parse as its backend.
 
-Time spent: **X** hours spent in total
+Time spent: **30** hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
-- [ ] User sees app icon in home screen.
-- [ ] User can sign up to create a new account using Parse authentication
-- [ ] User can log in and log out of his or her account
-- [ ] The current signed in user is persisted across app restarts
-- [ ] User can take a photo, add a caption, and post it to "Instagram"
-- [ ] User can view the last 20 posts submitted to "Instagram"
-- [ ] User can pull to refresh the last 20 posts submitted to "Instagram"
-- [ ] User can tap a post to view post details, including timestamp and caption.
+- [x] User sees app icon in home screen.
+- [x] User can sign up to create a new account using Parse authentication
+- [x] User can log in and log out of his or her account
+- [x] The current signed in user is persisted across app restarts
+- [x] User can take a photo, add a caption, and post it to "Instagram"
+- [x] User can view the last 20 posts submitted to "Instagram"
+- [x] User can pull to refresh the last 20 posts submitted to "Instagram"
+- [x] User can tap a post to view post details, including timestamp and caption.
 
 The following **stretch** features are implemented:
 
-- [ ] Style the login page to look like the real Instagram login page.
-- [ ] Style the feed to look like the real Instagram feed.
-- [ ] User should switch between different tabs - viewing all posts (feed view), capture (camera and photo gallery view) and profile tabs (posts made) using fragments and a Bottom Navigation View.
-- [ ] User can load more posts once he or she reaches the bottom of the feed using endless scrolling.
-- [ ] Show the username and creation time for each post
+- [X] Style the login page to look like the real Instagram login page.
+- [X] Style the feed to look like the real Instagram feed.
+- [X] User should switch between different tabs - viewing all posts (feed view), capture (camera and photo gallery view) and profile tabs (posts made) using fragments and a Bottom Navigation View.
+- [X] User can load more posts once he or she reaches the bottom of the feed using endless scrolling.
+- [X] Show the username and creation time for each post
 - [ ] After the user submits a new post, show an indeterminate progress bar while the post is being uploaded to Parse
 - User Profiles:
   - [ ] Allow the logged in user to add a profile photo
-  - [ ] Display the profile photo with each post
+  - [X] Display the profile photo with each post
   - [ ] Tapping on a post's username or profile photo goes to that user's profile page
-  - [ ] User Profile shows posts in a grid view
+  - [X] User Profile shows posts in a grid view
 - [ ] User can comment on a post and see all comments for each post in the post details screen.
 - [ ] User can like a post and see number of likes for each post in the post details screen.
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [x] Have a set default profile image
+- [x] Be able to click an image in grid view on the profile fragment to see more details
+
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. I would like to discuss the most optimal way to include likes, comments, followers, and following features
+2. It would be interesting to implement messaging functionality where you can share posts
+3. I would also like to discuss the best approach to add video capability
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='Kapture 2020-07-10 at 18.58.44.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+GIF created with [Kap](https://getkap.co/).
 
 ## Credits
 
@@ -56,14 +59,26 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 
 - [Android Async Http Client](http://loopj.com/android-async-http/) - networking library
 
+- [Instagram icons](https://courses.codepath.org/course_files/android_university_fast_track/assets/instagram_android_assets.zip)
+
+- [Glide](https://github.com/bumptech/glide) - image loading library
+
+- [Parse](https://parseplatform.org/) - backend
+
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+There were a lot of challenges through developing this app with not only functionality and implementation, 
+but also with organizing all the Android components. The first difficulty was implementing all the fragments 
+in place of activities, and learning how to interact and pass objects from the Parse backend with these 
+fragments. The other main difficulty I had was understanding how toolbars interact with fragments. Due 
+to being comfortable with the Actionbar, I did not understand how the Toolbar was being treated as a simple 
+view. Overall, although this project was challenging, I feel that I became twice as confident with my understanding 
+of all the core Android components.  
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2020 James Talavera
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
