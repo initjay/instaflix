@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,6 +62,7 @@ public class ProfilePostsAdapter extends RecyclerView.Adapter<ProfilePostsAdapte
             super(itemView);
 
             ivPosts = itemView.findViewById(R.id.ivPosts);
+            itemView.setOnClickListener(this);
         }
 
         public void post(Post post) {
