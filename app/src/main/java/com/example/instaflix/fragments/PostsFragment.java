@@ -9,10 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.util.Log;
+import android.util.TimeUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.instaflix.EndlessRecyclerViewScrollListener;
 import com.example.instaflix.Post;
@@ -38,6 +43,8 @@ public class PostsFragment extends Fragment {
     private SwipeRefreshLayout swipeContainer;
     // Store a member variable for the listener
     private EndlessRecyclerViewScrollListener scrollListener;
+    private Handler handler = new Handler();
+    private Runnable runnable;
 
     public PostsFragment() {
         // Required empty public constructor
@@ -106,7 +113,7 @@ public class PostsFragment extends Fragment {
     protected ParseQuery<Post> buildQuery(int skip) {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
-        query.setLimit(20);
+        query.setLimit(3);
         query.setSkip(skip);
         query.addDescendingOrder(Post.KEY_CREATED_AT);
         return query;
@@ -140,6 +147,7 @@ public class PostsFragment extends Fragment {
             @Override
             public void done(List<Post> posts, ParseException e) {
                 if (swipeContainer != null) {
+                    SystemClock.sleep(2000);
                     swipeContainer.setRefreshing(false);
                 }
                 if (e != null) {

@@ -49,7 +49,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='Kapture 2020-07-10 at 18.58.44.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='Kapture 2020-07-11 at 19.36.58.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 
